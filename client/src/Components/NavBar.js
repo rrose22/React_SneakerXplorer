@@ -9,7 +9,7 @@ function NavBar(){
     <div>
       <Navbar expand="lg" className="bg-danger">
 <Container>
-  <Navbar.Brand href="/home" className="font-italic" >SneakerXplorer</Navbar.Brand>
+  <Navbar.Brand href="/" className="font-italic" >SneakerXplorer</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
     <Nav>

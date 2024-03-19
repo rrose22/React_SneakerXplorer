@@ -20,10 +20,12 @@ async function scrapeShoes(url) {
         const name = $(element).find('.product-card__title').text().trim();
         const price = $(element).find('.product-price').text().trim();
         const color = $(element).find('.product-card__subtitle').text().trim();
-        const image = $(element).find('.product-card__img').attr('src');
+        const image = $(element).find('.product-card__hero_image').attr('src') || $(element).find('.product-card__hero_image').attr('data-src') || $(element).find('.product-card__img').attr('alt');
         const href = $(element).find('.product-card__link-overlay').attr('href');
 
         const shoe = { name, price, color, image, href };
+        console.log(image)
+        console.log(name)
         shoes.push(shoe);
       });
       return shoes;
