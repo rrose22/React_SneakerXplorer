@@ -39,18 +39,13 @@ function ViewSneaker() {
         <img class="card-img-top bg-dark border border-danger border-5" style={{width:"200px", height:"100px"}}alt="..."></img>
         <div class="card-body">
           <p class="card-text m-0 p-0">Price: {product.price}</p>
-          <p class="card-text m-0 p-0">Color: {product.price}</p>
+          <p class="card-text m-0 p-0">Description: {product.color}</p>
+          <a href={product.href} target="_blank" rel="noopener noreferrer">View Details</a>
+
+
          </div>
         </div>
       </div>
-//   <li key={index}>
-//   <h6>{product.name}</h6>
-//   <p>Price: {product.price}</p>
-//   <p>Color: {product.color}</p>
-//   <img src={product.image} alt='shoeImage' style={{width:"250px", height:"100%"}}></img>
-//   {product.image && <img src={product.image} alt={product.name} style={{ maxWidth: '100px', maxHeight: '100px' }} />}
-//   <a href={product.href} target="_blank" rel="noopener noreferrer">View Details</a>
-// </li>
       ))}
     
       </div>

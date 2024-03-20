@@ -13,7 +13,8 @@ function NavBar(){
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
     <Nav>
-    <Nav.Link href="/resell">Resell</Nav.Link>
+      <Nav.Link href="/forum">Forum</Nav.Link>
+      <Nav.Link href="/resell">Resell</Nav.Link>
       <Nav.Link href="/view">Sneakers</Nav.Link>
       <Nav.Link href="/calendar">Calendar</Nav.Link>
       <Nav.Link href="/register">Sign Up</Nav.Link>

@@ -7,6 +7,7 @@ import ViewSneaker from './Components/ViewSneaker.js'
 import Calendar from './Components/Calendar.js'
 import Login from './Components/Login.js'
 import Register from './Components/Register.js';
+import Forum from './Components/Forum.js';
 
 
 
@@ -20,6 +21,7 @@ function App() {
     <Route path='/calendar' element={<Calendar/>}></Route>
     <Route path='/register' element={<Register/>}></Route>
     <Route path='/login' element={<Login/>}></Route>
+    <Route path='/forum' element={<Forum/>}></Route>
     </Routes>
     </BrowserRouter>
    
