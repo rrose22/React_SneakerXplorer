@@ -69,8 +69,10 @@ app.get('', async (req, res) => {
 });
 
 const connectDb = async () => {
-  const DB_CONNECTION_STRING = "mongodb+srv://admin:admin@cluster0.ktjqy7e.mongodb.net/Forum?retryWrites=true&w=majority&appName=Cluster0";
-  try {
+
+  const DB_CONNECTION_STRING =
+  "mongodb+srv://mustafaismailmab:mumu123@cluster0.kmefq4m.mongodb.net/?retryWrites=true&w=majority";
+    try {
     await mongoose.connect(DB_CONNECTION_STRING, {
       useNewUrlParser: true,
       useUnifiedTopology: true
