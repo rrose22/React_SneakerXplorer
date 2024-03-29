@@ -11,34 +11,63 @@ userRoutes.get("/", async (req,res)=>{
   }
 })
 
-userRoutes.post("/signup", async (req,res) =>{
-  console.log(req.body)
+userRoutes.post('/signup', async (req, res) => {
   try {
+    // Extract username and password from request body
+    const { username, password, email } = req.body;
+
+    // Check if username already exists
+    const existingUser = await UserModel.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ error: 'Username already exists' });
+    }
+
+    // Create a new user instance
     const newUser = new UserModel({
-      ...req.body
-    })
-    await newUser.save()
-    res.status(201).send(`${newUser.username} was added`)
+      username,
+      password, // Note: In production, you should hash the password before saving it
+      email
+    });
+
+    // Save the new user to the database
+    await newUser.save();
+
+    // Send success response
+    res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
-    res.status(404).send(error)
+    console.error('Error registering user:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-})
+});
+
 userRoutes.post("/login",  async (req,res) =>{
   try {
-    var foundUser = await UserModel.findOne({username: req.body.username, password: req.body.password})
-    if(foundUser) {
-        res.status(200).json({
-          status: true,
-          username : foundUser.username,
-          message: foundUser.username + " was logged in successfully"})
-    }
-    else{
-      res.status(200).json({
+    const { username, password } = req.body;
+
+    // Find user by username and password
+    const foundUser = await UserModel.findOne({ username, password });
+
+    if (foundUser) {
+      // User found, send success response
+      return res.status(200).json({
+        status: true,
+        username: foundUser.username,
+        message: `${foundUser.username} was logged in successfully`
+      });
+    } else {
+      // User not found, send failure response
+      return res.status(401).json({
         status: false,
-        message: "Can't log in successfully. Incorrect Password/Username"})
+        message: "Incorrect username or password"
+      });
     }
   } catch (error) {
-    res.status(404).send("Error Occured")
+    // Internal server error
+    console.error("Error occurred during login:", error);
+    return res.status(500).json({
+      status: false,
+      message: "An error occurred during login"
+    });
   }
 })
 
