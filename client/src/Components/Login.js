@@ -6,9 +6,10 @@ import axios from '../Components/api/axios';
 const LOGIN_URL = 'http://localhost:3001/api/user/login';
 
 const Login = () => {
+    const { login } = useAuth();
+
     const userRef = useRef();
     const errRef = useRef();
-
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
@@ -39,7 +40,7 @@ const Login = () => {
             console.log(JSON.stringify(response?.data));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            useAuth.login({user, pwd, roles, accessToken});
+            login({user, pwd, roles, accessToken});
             setUser('');
             setPwd('');
             setSuccess(true);
