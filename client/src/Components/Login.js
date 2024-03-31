@@ -1,12 +1,11 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import NavBar from './NavBar.js'
-import AuthContext from "../Components/context/AuthProvider";
+import { useAuth } from "../Components/context/AuthProvider";
 
 import axios from '../Components/api/axios';
-const LOGIN_URL = '/auth';
+const LOGIN_URL = 'http://localhost:3001/api/user/login';
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -26,22 +25,25 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const formData = {
+            username: e.target.username.value,
+            password: e.target.password.value
+        };
+    
+        if (!formData.username || !formData.password) {
+            setErrMsg('Please enterboth username and password');
+        }
+
         try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
+            const response = await axios.post(LOGIN_URL, formData);
             console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            useAuth.login({user, pwd, roles, accessToken});
             setUser('');
             setPwd('');
             setSuccess(true);
+            console.log(response)
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');

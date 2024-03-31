@@ -19,20 +19,18 @@ import ViewForum from './Components/forum/ViewForum.js';
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-    <Route path='/' element={<LandingPage/>}></Route>
-    <Route path='/resell' element={<ResellPage/>}></Route>
-    <Route path='/view' element={<ViewSneaker/>}></Route>
-    <Route path='/calendar' element={<Calendar/>}></Route>
-    <Route path='/register' element={<Register/>}></Route>
-    <Route path='/login' element={<Login/>}></Route>
-    <Route path='/forum' element={<Forum/>}></Route>
-    <Route path='/forum/createForum' element={<CreateForum/>}></Route>
-    <Route path='/forum/updateThread/:id' element={<UpdateForum/>}></Route>
-    <Route path='/forum/view/:id' element={<ViewForum/>}></Route>
-
-
-    </Routes>
+      <Routes>
+        <Route path='/' element={<LandingPage/>}></Route>
+        <Route path='/resell' element={<ResellPage/>}></Route>
+        <Route path='/view' element={<ViewSneaker/>}></Route>
+        <Route path='/calendar' element={<Calendar/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/forum' element={<Forum/>}></Route>
+        <Route path='/forum/createForum' element={<CreateForum/>}></Route>
+        <Route path='/forum/updateThread/:id' element={<UpdateForum/>}></Route>
+        <Route path='/forum/view/:id' element={<ViewForum/>}></Route>
+      </Routes>
     </BrowserRouter>
    
   );

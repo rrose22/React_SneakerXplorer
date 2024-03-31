@@ -1,47 +1,38 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useState, useContext } from 'react';
 
-const AuthContext = createContext({});
+// Create a context for AuthProvider
+const AuthContext = createContext();
 
-// Custom hook to access the authentication context
-export function useAuthContext() {
-    return useContext(authContext);
-}
-
+// AuthProvider component
 export const AuthProvider = ({ children }) => {
-    
-    const [authState, setAuthState] = useState({
-        user: null,
-        pwd: null,
-        isAuthenticated: false,
-        accessToken: null,
-        roles: null,
-    });
+  const [user, setUser] = useState(null); // Initially no user is logged in
 
-    const setAuth = ({ user, pwd, roles, accessToken }) => {
-        setAuthState({
-            user,
-            pwd,
-            isAuthenticated: true,
-            accessToken,
-            roles,
-        })
-    }
+  // Method to log in the user
+  const login = (userData) => {
+    // Logic to authenticate user, e.g., sending request to backend
+    // Upon successful authentication, set the user
+    setUser(userData);
+  };
 
-    const logout = () => {
-        setAuthState({
-            user: null,
-            pwd: null,
-            isAuthenticated: false,
-            accessToken: null,
-            roles: null,
-        })
-    }
+  // Method to log out the user
+  const logout = () => {
+    // Logic to log out the user, e.g., clearing session/local storage
+    // Upon successful logout, set the user to null
+    setUser(null);
+  };
 
-    return (
-        <AuthContext.Provider value={{ ...authState, setAuth, logout }}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
-export default AuthContext;
+// Custom hook to use AuthContext
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

@@ -9,13 +9,15 @@ const app = express();
 const port = 3001;
 const api = express();
 
+const bodyParser = require('body-parser');
+
 app.use(cors());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
 api.use("/user", userRoutes)
 api.use("/forum", threadRoutes)
 app.use("/api", api)
-
-app.use(express.json())
-app.use(express.urlencoded())
 
 
 async function scrapeShoes(url) {
