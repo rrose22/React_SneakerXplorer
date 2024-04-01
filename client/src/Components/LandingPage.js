@@ -9,22 +9,20 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import  Image  from 'react-bootstrap/Image';
 
-
-
-
 function LandingPage() {
+
   return (
     <div className="App">
    <NavBar/>
       <Container>
-     <Row>
-      <Col ><Image src='https://sneakerbardetroit.com/wp-content/uploads/2019/07/Air-Jordan-4-Black-Cat-CU1110-010-2020-Release-Date-2.png' fluid></Image></Col>
-      <Col>
-        <h1 style={{marginTop: '5rem', marginLeft: 0}}>SneakerXplorer</h1>
-        <h5>Your one stop destination for sneaker deals and upcoming releases. </h5>
-        <Button variant="danger" size="lg">Browse Sneakers</Button>
-        </Col>
-     </Row>
+        <Row>
+          <Col ><Image src='https://sneakerbardetroit.com/wp-content/uploads/2019/07/Air-Jordan-4-Black-Cat-CU1110-010-2020-Release-Date-2.png' fluid></Image></Col>
+          <Col>
+            <h1 style={{marginTop: '5rem', marginLeft: 0}}>SneakerXplorer</h1>
+            <h5>Your one stop destination for sneaker deals and upcoming releases. </h5>
+            <Button variant="danger" size="lg">Browse Sneakers</Button>
+            </Col>
+        </Row>
       </Container>
       <Container style={{ backgroundColor: 'black',padding: '4rem', color: 'whitesmoke',}}fluid>
           <h2 >What is SneakerXplorer?</h2>
@@ -104,7 +102,7 @@ staying in the loop on the latest sneaker releases.</h5>
       </Col>
 
      </Row>
-      </Container>
+    </Container>
   
     </div>
   );

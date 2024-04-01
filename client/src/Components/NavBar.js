@@ -3,8 +3,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { useAuth } from './context/AuthProvider'; 
+
 
 function NavBar(){
+
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout(); // Call the logout function from useAuth
+  };
+
   return (
     <div>
       <Navbar expand="lg" className="bg-danger">
@@ -17,7 +26,18 @@ function NavBar(){
               <Nav.Link href="/resell">Resell</Nav.Link>
               <Nav.Link href="/view">Sneakers</Nav.Link>
               <Nav.Link href="/calendar">Calendar</Nav.Link>
-              <Nav.Link href="/register">Sign Up</Nav.Link>
+              {user ? (
+                <>
+                  {/* Render different items for authenticated users */}
+                  <Nav.Link href="/profile">Profile</Nav.Link>
+                  <Nav.Link onClick={handleLogout}>Logout</Nav.Link> {/* Call handleLogout function on click */}                </>
+              ) : (
+                <>
+                  {/* Render different items for non-authenticated users */}
+                  <Nav.Link href="/register">Sign Up</Nav.Link>
+                  <Nav.Link href="/login">login</Nav.Link>
+                </>
+              )}
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">

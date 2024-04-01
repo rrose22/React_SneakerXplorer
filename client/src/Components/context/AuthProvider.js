@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 // Create a context for AuthProvider
 const AuthContext = createContext();
@@ -7,18 +7,23 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Initially no user is logged in
 
+  useEffect(() => {
+    const storedUser = sessionStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser))
+    }
+  }, [])
+
   // Method to log in the user
   const login = (userData) => {
-    // Logic to authenticate user, e.g., sending request to backend
-    // Upon successful authentication, set the user
     setUser(userData);
+    sessionStorage.setItem('user', JSON.stringify(userData));
   };
 
   // Method to log out the user
   const logout = () => {
-    // Logic to log out the user, e.g., clearing session/local storage
-    // Upon successful logout, set the user to null
     setUser(null);
+    sessionStorage.removeItem('user');
   };
 
   return (
